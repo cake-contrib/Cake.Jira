@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.Jira", "Cake.Jira\Cake.Jira.csproj", "{779AA06E-C29C-4B65-B683-05EC3710BC6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.Jira.Tests", "Cake.Jira.Tests\Cake.Jira.Tests.csproj", "{36591B01-1D3B-4DC0-B3E0-C57EE3EE995B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{779AA06E-C29C-4B65-B683-05EC3710BC6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{779AA06E-C29C-4B65-B683-05EC3710BC6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{779AA06E-C29C-4B65-B683-05EC3710BC6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{779AA06E-C29C-4B65-B683-05EC3710BC6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36591B01-1D3B-4DC0-B3E0-C57EE3EE995B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36591B01-1D3B-4DC0-B3E0-C57EE3EE995B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36591B01-1D3B-4DC0-B3E0-C57EE3EE995B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36591B01-1D3B-4DC0-B3E0-C57EE3EE995B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

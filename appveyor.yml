@@ -1,0 +1,14 @@
+version: 0.1.{build}
+build:
+  project: src/Cake.Jira.sln
+  publish_nuget: true
+  include_nuget_references: true
+  parallel: true
+  verbosity: normal
+deploy:
+- provider: NuGet
+  api_key:
+    secure: /fbpg147kjCtvGcGUu428AtYkI6WAs35Hv3qICOCWLhV9f6ff1vp9nNJ0Fx2Gu57
+  skip_symbols: true
+  on:
+    branch: Release-*
