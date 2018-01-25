@@ -194,13 +194,14 @@ Task("Run-Tests")
 	.IsDependentOn("Build")
 	.Does(() =>
 	{
-		EnsureDirectoryExists(Directory("./.output"));
+		var directory  =Directory("./.output");
+		EnsureDirectoryExists(directory);
 
 		NUnit3($"../**/bin/{configuration}/*.Tests.dll", new NUnit3Settings
 		{
 			Configuration = configuration,
 			TeamCity = runningOnBuildServer,
-			OutputFile = File("./.output/TestResults.xml")
+			WorkingDirectory = directory.Path
 		});
 	});
 
@@ -210,7 +211,7 @@ Task("Upload-Test-Results-To-AppVeyor")
    .Does(() =>
    {
        AppVeyor.UploadTestResults(
-           File("./.output/TestResults.xml").Path,
+           File("./.output/TestResult.xml").Path,
            AppVeyorTestResultsType.NUnit3);
    });
 
