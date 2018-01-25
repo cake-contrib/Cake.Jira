@@ -1,6 +1,6 @@
 version: 0.1.{build}
 before_build:
-- cmd: nuget restore
+- cmd: nuget restore src/Cake.Jira.sln
 build:
   project: src/Cake.Jira.sln
   publish_nuget: true
