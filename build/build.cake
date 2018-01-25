@@ -139,7 +139,7 @@ Task("Get-GitVersion")
 
 			if(runningOnBuildServer)
 			{
-				AppVeyor.SetBuildNumber(nugetVersion);
+				AppVeyor.UpdateBuildVersion((nugetVersion);
 			}
 		});
 
