@@ -236,7 +236,7 @@ Task("NuGet-Package")
 		
 		EnsureDirectoryExists(Directory("./.nuget").Path);
 		
-		var nuspecs = GetFiles("./*/Cake.Jira*.nuspec");
+		var nuspecs = GetFiles("./*/Cake.*.nuspec");
 		foreach(var file in nuspecs)
 		{
 			NuGetPack(file.ToString().Replace(".nuspec", ".csproj"), settings);
@@ -248,7 +248,7 @@ Task("Upload-NuGet-Packages-To-AppVeyor")
 	.WithCriteria(runningOnBuildServer)
 	.Does(() => 
 	{
-		var packages = GetFiles("./*/Cake.Jira*.nupkg");
+		var packages = GetFiles("./*/Cake.*.nupkg");
 		foreach(var package in packages)
 		{
 			AppVeyor.UploadArtifact(package, new AppVeyorUploadArtifactsSettings()
