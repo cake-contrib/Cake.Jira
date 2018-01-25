@@ -200,7 +200,7 @@ Task("Run-Tests")
 		{
 			Configuration = configuration,
 			TeamCity = runningOnBuildServer,
-			OutputFile = File("./.output/TestResult.xml")
+			OutputFile = File("./.output/TestResults.xml")
 		});
 	});
 
@@ -210,7 +210,7 @@ Task("Upload-Test-Results-To-AppVeyor")
    .Does(() =>
    {
        AppVeyor.UploadTestResults(
-           File("./.output/TestResult.xml").Path,
+           File("./.output/TestResults.xml").Path,
            AppVeyorTestResultsType.NUnit);
    });
 
