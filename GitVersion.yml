@@ -1,0 +1,12 @@
+mode: ContinuousDelivery
+tag-prefix: '[Rr]eleases?[/-]'
+branches:
+    master:
+        increment: None
+        tag: 'alpha'
+    releases?[/-]:
+        mode: ContinuousDelivery
+        increment: None
+        tag: ''
+ignore:
+  sha: []

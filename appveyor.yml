@@ -1,12 +1,10 @@
 version: 0.1.{build}
-before_build:
-- cmd: nuget restore src/Cake.Jira.sln
-build:
-  project: src/Cake.Jira.sln
-  publish_nuget: true
-  include_nuget_references: true
-  parallel: true
-  verbosity: normal
+build_script:
+- ps: >-
+    cd .\build
+
+
+    .\build.ps1 -branch=$env:APPVEYOR_REPO_BRANCH /$env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH
 deploy:
 - provider: NuGet
   api_key:
