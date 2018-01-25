@@ -22,4 +22,4 @@ deploy:
     secure: /fbpg147kjCtvGcGUu428AtYkI6WAs35Hv3qICOCWLhV9f6ff1vp9nNJ0Fx2Gu57
   skip_symbols: true
   on:
-    branch: Release-/[0-9]+.[0-9]+/
+    branch: /Release-/[0-9, .]+/
