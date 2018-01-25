@@ -4,7 +4,16 @@ build_script:
     cd .\build
 
 
-    .\build.ps1 -branch=$env:APPVEYOR_REPO_BRANCH /$env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH
+    $branch=$env:APPVEYOR_REPO_BRANCH
+
+    if($env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH -ne "")
+
+    {
+        $branch = "$(branch)/$(env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH)"
+    }
+
+
+    .\build.ps1 -branch=$(branch)
 deploy:
 - provider: NuGet
   api_key:
