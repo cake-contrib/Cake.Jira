@@ -1,0 +1,13 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$id$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <iconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</iconUrl>
+    <description>$description$</description>
+    <copyright>$copyright$</copyright>
+  </metadata>
+</package>
