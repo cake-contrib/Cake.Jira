@@ -139,7 +139,7 @@ Task("Get-GitVersion")
 
 			if(runningOnBuildServer)
 			{
-				TeamCity.SetBuildNumber(nugetVersion);
+				AppVeyor.SetBuildNumber(nugetVersion);
 			}
 		});
 
@@ -200,7 +200,6 @@ Task("Run-Tests")
 		NUnit3($"../**/bin/{configuration}/*.Tests.dll", new NUnit3Settings
 		{
 			Configuration = configuration,
-			TeamCity = runningOnBuildServer,
 			WorkingDirectory = directory.Path
 		});
 	});
