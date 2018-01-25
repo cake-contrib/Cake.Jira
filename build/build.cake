@@ -211,7 +211,7 @@ Task("Upload-Test-Results-To-AppVeyor")
    {
        AppVeyor.UploadTestResults(
            File("./.output/TestResults.xml").Path,
-           AppVeyorTestResultsType.NUnit);
+           AppVeyorTestResultsType.NUnit3);
    });
 
 Task("NuGet-Package")
