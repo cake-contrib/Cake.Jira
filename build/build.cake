@@ -76,6 +76,7 @@ string nugetVersion = null;
 string assemblyVersion = null;
 GitVersion gitVersion = null;
 var runningPullRequestBuild = buildServerBranch.Contains("/merge");
+Information($"Running build for branch {buildServerBranch}");
 Information(string.Format("runningPullRequestBuild: {0}", runningPullRequestBuild));
 
 //////////////////////////////////////////////////////////////////////
@@ -193,6 +194,8 @@ Task("Run-Tests")
 	.IsDependentOn("Build")
 	.Does(() =>
 	{
+		EnsureDirectoryExists(Directory("./.output"));
+
 		NUnit3($"../**/bin/{configuration}/*.Tests.dll", new NUnit3Settings
 		{
 			Configuration = configuration,
