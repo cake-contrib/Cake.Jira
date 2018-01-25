@@ -33,6 +33,7 @@ private NuGetVerbosity MapVerbosityToNuGetVerbosity(Verbosity verbosity)
 		case Verbosity.Diagnostic:
 		case Verbosity.Verbose:
 			return NuGetVerbosity.Detailed;
+		case Verbosity.Minimal:
 		case Verbosity.Quiet:
 			return NuGetVerbosity.Quiet;
 		default:
