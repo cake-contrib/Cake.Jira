@@ -15,7 +15,7 @@ build_script:
     }
 
 
-    .\build.ps1 -Verbosity $env:Verbosity -branch=$($branch)
+    .\build.ps1 -Verbosity $env:Verbosity -branch="$($branch)"
 deploy:
 - provider: NuGet
   api_key:
