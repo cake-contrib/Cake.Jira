@@ -16,7 +16,7 @@ namespace Cake.Jira.Tests
         [Test]
         public void CreateJiraVersion_Should_CreateVersion_When_SpecifiedVersionDoesntExist()
         {
-            JiraClient
+
         }
     }
 }
