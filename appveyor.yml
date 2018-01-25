@@ -4,12 +4,12 @@ build_script:
     cd .\build
 
 
-    $branch=$env:APPVEYOR_REPO_BRANCH
+    $branch="$($env:APPVEYOR_REPO_BRANCH)"
 
     if($env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH -ne "")
 
     {
-        $branch = "$(branch)/$(env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH)"
+        $branch = "$($branch)/$($env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH)"
     }
 
 
