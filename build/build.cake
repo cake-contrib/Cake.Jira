@@ -1,6 +1,5 @@
 #tool "nuget:?package=GitVersion.CommandLine";
 #tool "nuget:?package=NUnit.ConsoleRunner";
-#addin "nuget:?package=Cake.XdtTransform";
 #addin "nuget:?package=Cake.FileHelpers";
 #addin "nuget:?package=Cake.Topshelf"
 #addin nuget:?package=Cake.AppVeyor
