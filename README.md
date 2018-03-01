@@ -27,7 +27,7 @@ Task("Create-Jira-Version")
         Description = "Something something bla bla bla lorem freaking ipsum",
         Number = "1.0.0",
         ReleaseDate = DateTime.Now
-	    }
+      }
     );
   });
 ```
