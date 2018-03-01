@@ -1,9 +1,8 @@
-mode: ContinuousDelivery
+mode: ContinuousDeployment
 tag-prefix: '[Rr]eleases?[/-]'
 branches:
     master:
         increment: None
-        tag: 'alpha'
     releases?[/-]:
         mode: ContinuousDelivery
         increment: None
