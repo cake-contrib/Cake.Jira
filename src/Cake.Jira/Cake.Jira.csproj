@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\AssemblyVersionInfo.cs" />
     <Compile Include="Dtos\CreateOrUpdateJiraVersionSettings.cs" />
     <Compile Include="Dtos\MigrateIssuesVersionSettings.cs" />
     <Compile Include="Helpers\Extensions.cs" />
