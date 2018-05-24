@@ -1,13 +1,25 @@
 ﻿<?xml version="1.0"?>
 <package >
   <metadata>
-    <id>$id$</id>
+    <id>Cake.Jira</id>
     <version>$version$</version>
-    <title>$id$</title>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
+    <title>Cake.Jira</title>
+    <authors>Hugo Tavares</authors>
+    <owners>Hugo Tavares</owners>
     <iconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</iconUrl>
-    <description>$description$</description>
-    <copyright>$copyright$</copyright>
-  </metadata>
+    <licenseUrl>https://github.com/Ninglin/Cake.Jira/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Ninglin/Cake.Jira/</projectUrl>
+    <description>Cake build addin for integration with Jira.</description>
+    <summary>Jira tools addin for Cake Build.</summary>
+    <copyright>Copyright © Hugo Tavares 2018</copyright>
+    <tags>Cake Script Build Jira </tags>
+  </metadata> 
+  <files>
+    <file src="bin\$configuration$\Cake.Core.dll" target="lib/net461" />
+    <file src="bin\$configuration$\Cake.Jira.dll" target="lib/net461" />
+    <file src="bin\$configuration$\Atlassian.Jira.dll" target="lib/net461" />
+    <file src="bin\$configuration$\RestSharp.dll" target="lib/net461" />
+    <file src="bin\$configuration$\Newtonsoft.Json.dll" target="lib/net461" />
+    <file src="..\..\LICENSE" />
+  </files>
 </package>

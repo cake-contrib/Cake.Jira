@@ -105,7 +105,7 @@ Task("Restore-NuGet-Packages")
 
 
 Task("Get-GitVersion")
-		.WithCriteria(() => runningOnBuildServer && !runningPullRequestBuild)
+		//.WithCriteria(() => runningOnBuildServer && !runningPullRequestBuild)
 		.Does(() => {
 			gitVersion = GitVersion(new GitVersionSettings
 			{
@@ -218,7 +218,7 @@ Task("Upload-Test-Results-To-AppVeyor")
 Task("NuGet-Package")
 	.IsDependentOn("Run-Tests")
 	.IsDependentOn("Get-GitVersion")
-	.WithCriteria(runningOnBuildServer)
+	//.WithCriteria(runningOnBuildServer)
 	.Does(() => 
 	{
 		Information(string.Format("Using version {0} for nuget packages", nugetVersion));
@@ -240,7 +240,7 @@ Task("NuGet-Package")
 		foreach(var file in nuspecs)
 		{
 			Information(file.FullPath);
-			NuGetPack(file.ToString().Replace(".nuspec", ".csproj"), settings);
+			NuGetPack(file.ToString(), settings);
 		}
 	});
 
