@@ -149,31 +149,18 @@ Task("Set-Assembly-Information-Files")
 	.IsDependentOn("Get-GitVersion")
 	.Does(() => {
 
-		var assemblyInfos = GetFiles("../**/Properties/AssemblyInfo.cs");
+		var assemblyInfos = GetFiles("../**/AssemblyVersionInfo.cs");
 		foreach(var assemblyInfoPath in assemblyInfos)
 		{
 			Information($"Found assembly info in {assemblyInfoPath.FullPath}");
 			var assemblyInfo = ParseAssemblyInfo(assemblyInfoPath);
 
 			var assemblyInfoSettings = new AssemblyInfoSettings {
-				Title = assemblyInfo.Title,
-				Description = assemblyInfo.Description,
-				Company = assemblyInfo.Company,
-				Product = assemblyInfo.Product,
 				Version = assemblyVersion,
 				FileVersion = assemblyVersion,
-				InformationalVersion = nugetVersion,
-				Guid = assemblyInfo.Guid,
-				ComVisible = assemblyInfo.ComVisible,
-				Trademark = assemblyInfo.Trademark,
-				Copyright = $"Copyright © Hugo Tavares {DateTime.Now.Year}"
+				InformationalVersion = nugetVersion
 			};
-
-			if(assemblyInfo.InternalsVisibleTo != null && assemblyInfo.InternalsVisibleTo.Any())
-			{
-				assemblyInfoSettings.InternalsVisibleTo = assemblyInfo.InternalsVisibleTo;
-			}
-
+			
 			CreateAssemblyInfo(assemblyInfoPath, assemblyInfoSettings);
 		}
 	});
@@ -240,7 +227,7 @@ Task("NuGet-Package")
 		foreach(var file in nuspecs)
 		{
 			Information(file.FullPath);
-			NuGetPack(file.ToString().Replace(".nuspec", ".csproj"), settings);
+			NuGetPack(file.ToString(), settings);
 		}
 	});
 
