@@ -6,7 +6,7 @@ namespace Cake.Jira.Helpers
 {
     public static class Extensions
     {
-        public static async Task Update(this ProjectVersion version, CreateJiraVersionSettings settings)
+        public static async Task Update(this ProjectVersion version, CreateOrUpdateJiraVersionSettings settings)
         {
             version.IsReleased = settings.IsReleased;
             version.Description = settings.Description;
