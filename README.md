@@ -12,27 +12,45 @@ In order to use the add-in just reference it as you would any other cake add-in:
 ```
 After that you can use the aliases available.
 
-Currently the add-in only supports one alias for creating a version on Jira. Check below for it's usage:
+Currently the add-in supports: 
 
+* One alias for creating a version on Jira. 
+
+**Usage:**
 ```csharp
 Task("Create-Jira-Version")
-  .Does(() => {
-    CreateJiraVersion(
-      new CreateJiraVersionSettings
+  .Does(async () => {
+    await CreateOrUpdateJiraVersion(
+      new CreateOrUpdateJiraVersionSettings
       {
         Host = "https://your.jira.host.com",
         User = "JustAUser",
         Password = "SuperSecurePassword",
-        Project = "ProjectId",
+        Project = "ProjectKey",
         Description = "Something something bla bla bla lorem freaking ipsum",
-        Number = "1.0.0",
+        VersionName = "1.0.0",
         ReleaseDate = DateTime.Now
       }
     );
   });
 ```
 
-And there you go. You should have a new Jira version created. Keep in mind that if you call ```CreateJiraVersion``` on an existing version it will update it.
+* One alias for moving all issues from one version to another:
+
+**Usage:**
+```csharp
+Task("Migrate-Issues-To-Version")
+	.Does(async () => {
+		await MigrateIssuesVersion(new MigrateIssuesVersionSettings{
+			Host = "https://your.jira.host.com",
+			User = "JustAUser",
+			Password = "SuperSecurePassword",
+			Project = "ProjectKey",
+			FromVersion = "AnOldVersion",
+			ToVersion = "ABrandNewVersion",
+		});
+	});
+```
 
 # Contributing
 
