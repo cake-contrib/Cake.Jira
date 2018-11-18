@@ -3,7 +3,8 @@ tag-prefix: '[Rr]eleases?[/-]'
 branches:
     master:
         increment: None
-    releases?[/-]:
+    release:
+        regex: releases?[/-]
         mode: ContinuousDelivery
         increment: None
         tag: ''
