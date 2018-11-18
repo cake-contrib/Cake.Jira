@@ -196,7 +196,7 @@ Task("Run-Tests")
 
 Task("Upload-Test-Results-To-AppVeyor")
    .IsDependentOn("Run-Tests")
-   .WithCriteria(runningOnBuildServer)
+   .WithCriteria(false)
    .Does(() =>
    {
        AppVeyor.UploadTestResults(
