@@ -49,6 +49,24 @@ namespace Cake.Jira
             await JiraClient.MigrateIssuesVersion(settings, context.Log);
         }
 
+        [CakeMethodAlias]
+        public static async Task CreateJiraIssue(this ICakeContext context, CreateIssueSettings settings)
+        {
+            ValidateJiraSettings(settings);
+
+            if (string.IsNullOrWhiteSpace(settings.Project))
+            {
+                throw new ArgumentException("Project must be specified.");
+            }
+
+            if (string.IsNullOrWhiteSpace(settings.Summary))
+            {
+                throw new ArgumentException("Summary must be specified.");
+            }
+
+            await JiraClient.CreateJiraIssue(settings, context.Log);
+        }
+
         private static void ValidateJiraSettings(JiraSettings settings)
         {
             if (string.IsNullOrWhiteSpace(settings.Host))
