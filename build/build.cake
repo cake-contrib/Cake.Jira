@@ -41,6 +41,23 @@ private NuGetVerbosity MapVerbosityToNuGetVerbosity(Verbosity verbosity)
 	}
 }
 
+private DotNetCoreVerbosity MapVerbosityToDotNetCoreVerbosity(Verbosity verbosity)
+{
+	switch(verbosity)
+	{
+		case Verbosity.Diagnostic:
+			return DotNetCoreVerbosity.Diagnostic;
+		case Verbosity.Verbose:
+			return DotNetCoreVerbosity.Detailed;
+		case Verbosity.Minimal:
+			return DotNetCoreVerbosity.Minimal;
+		case Verbosity.Quiet:
+			return DotNetCoreVerbosity.Quiet;
+		default:
+			return DotNetCoreVerbosity.Normal;
+	}
+}
+
 public void CmdExecute(string command)
 {
 	var settings = new ProcessSettings {
@@ -71,7 +88,9 @@ var buildServerBranch = Argument<string>("branch", string.Empty);
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
 //////////////////////////////////////////////////////////////////////
-var solution = "../src/Cake.Jira.sln";
+var solutionDir = "../src/";
+var solutionName = "Cake.Jira.sln";
+var solution = ParseSolution(solutionDir+solutionName);
 var runningOnBuildServer = AppVeyor.IsRunningOnAppVeyor;
 string nugetVersion = null;
 string assemblyVersion = null;
@@ -87,19 +106,24 @@ Information(string.Format("runningPullRequestBuild: {0}", runningPullRequestBuil
 Task("Clean")
 	.Does(() =>
 	{
-		DotNetBuild(solution,
-			settings =>
-						settings.SetConfiguration(configuration)
-							.SetVerbosity(verbosity)
-							.WithTarget("Clean"));
+		var settings = new DotNetCoreCleanSettings
+		{
+			Verbosity = MapVerbosityToDotNetCoreVerbosity(verbosity),
+			Configuration = configuration
+		};
+		foreach (var project in solution.Projects) 
+		{
+            DotNetCoreClean(project.Path.ToString());
+        }
 	});
 
 Task("Restore-NuGet-Packages")
 	.Does(() =>
 	{
-    	NuGetRestore(solution, new NuGetRestoreSettings
+    	DotNetCoreRestore(new DotNetCoreRestoreSettings
 		{
-			Verbosity = MapVerbosityToNuGetVerbosity(verbosity)
+			WorkingDirectory = solutionDir,
+			Verbosity = MapVerbosityToDotNetCoreVerbosity(verbosity)
 		});
 	});
 
@@ -144,38 +168,16 @@ Task("Get-GitVersion")
 			}
 		});
 
-Task("Set-Assembly-Information-Files")
-	.WithCriteria(() => runningOnBuildServer && !runningPullRequestBuild)
-	.IsDependentOn("Get-GitVersion")
-	.Does(() => {
-
-		var assemblyInfos = GetFiles("../**/AssemblyVersionInfo.cs");
-		foreach(var assemblyInfoPath in assemblyInfos)
-		{
-			Information($"Found assembly info in {assemblyInfoPath.FullPath}");
-			var assemblyInfo = ParseAssemblyInfo(assemblyInfoPath);
-
-			var assemblyInfoSettings = new AssemblyInfoSettings {
-				Version = assemblyVersion,
-				FileVersion = assemblyVersion,
-				InformationalVersion = nugetVersion
-			};
-			
-			CreateAssemblyInfo(assemblyInfoPath, assemblyInfoSettings);
-		}
-	});
-
 Task("Build")
   	.IsDependentOn("Clean")
   	.IsDependentOn("Restore-NuGet-Packages")
-	.IsDependentOn("Set-Assembly-Information-Files")
 	.Does(() =>
 	{
-		DotNetBuild(solution,
-			settings =>
-						settings.SetConfiguration(configuration)
-							.SetVerbosity(verbosity)
-							.WithTarget("Build"));
+		DotNetCoreBuild(solutionDir, new DotNetCoreBuildSettings
+		{
+			Verbosity = MapVerbosityToDotNetCoreVerbosity(verbosity),
+			Configuration = "Debug"
+		});
 	});
 
 Task("Run-Tests")
@@ -185,7 +187,7 @@ Task("Run-Tests")
 		var directory  =Directory("./.output");
 		EnsureDirectoryExists(directory);
 
-		NUnit3($"../**/bin/{configuration}/*.Tests.dll", new NUnit3Settings
+		NUnit3($"../**/bin/{configuration}/net461/*.Tests.dll", new NUnit3Settings
 		{
 			Configuration = configuration,
 			WorkingDirectory = directory.Path
@@ -194,7 +196,7 @@ Task("Run-Tests")
 
 Task("Upload-Test-Results-To-AppVeyor")
    .IsDependentOn("Run-Tests")
-   .WithCriteria(runningOnBuildServer)
+   .WithCriteria(false)
    .Does(() =>
    {
        AppVeyor.UploadTestResults(
@@ -209,25 +211,21 @@ Task("NuGet-Package")
 	.Does(() => 
 	{
 		Information(string.Format("Using version {0} for nuget packages", nugetVersion));
-		
-		var settings = new NuGetPackSettings
-		{
-			OutputDirectory = "./.nuget",
-			Verbosity = NuGetVerbosity.Detailed,
-			Properties = new Dictionary<string, string>()
-			{
-				{"Configuration", configuration}
-			},
-			Version = nugetVersion
-		};
-		
+
 		EnsureDirectoryExists(Directory("./.nuget").Path);
-		
-		var nuspecs = GetFiles("../**/Cake.*.nuspec");
-		foreach(var file in nuspecs)
+		foreach (var project in solution.Projects) 
 		{
-			Information(file.FullPath);
-			NuGetPack(file.ToString(), settings);
+            if (!project.Name.ToString().Contains("Tests")) 
+			{
+				Information($"Packing {project.Name}");
+				DotNetCorePack(project.Path.ToString(), new DotNetCorePackSettings
+				{
+					OutputDirectory = "./.nuget",
+					Verbosity = MapVerbosityToDotNetCoreVerbosity(verbosity),
+					Configuration = configuration,
+					ArgumentCustomization = args => args.Append("/p:Version=" + nugetVersion)
+				});
+			}
 		}
 	});
 
