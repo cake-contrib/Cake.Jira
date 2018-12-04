@@ -1,9 +1,20 @@
+#---------------------------------#
+#  Build Image                    #
+#---------------------------------#
+image: Visual Studio 2017
+
 version: '{build}'
 pull_requests:
   do_not_increment_build_number: true
 skip_tags: true
 environment:
   Verbosity: Normal
+before_build:
+  # Display .NET Core version
+  - cmd: dotnet --version
+  # Display minimal restore text
+  - cmd: dotnet restore ./src/Cake.Jira/Cake.Jira.csproj --verbosity m
+  - cmd: dotnet restore ./src/Cake.Jira.Tests/Cake.Jira.Tests.csproj --verbosity m
 build_script:
 - ps: >-
     cd .\build
