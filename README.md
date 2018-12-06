@@ -52,6 +52,36 @@ Task("Migrate-Issues-To-Version")
 	});
 ```
 
+* One alias for creating a new jira issue:
+
+The properties `Host`, `Project` and `Summary` are required.
+
+**Usage:**
+```csharp
+Task("Create-Jira-Issue")
+  .Does(async () => {
+    var labels = new List<string>();
+    labels.Add("Label A");
+    labels.Add("Label B");
+
+    await CreateJiraIssue(new CreateIssueSettings{
+      Host = "https://your.jira.host.com",
+      User = "JustAUser",
+      Password = "SuperSecurePassword",
+      Project = "ProjectKey",
+      Summary = "Summary",
+      Reporter = "Reporter",
+      Description = "Description",
+      Environment = "Environment",
+      Assignee = "Assignee",
+      Priority = 1,
+      Type = 1,
+      Labels = labels,
+      DueDate = new DateTime(2018, 12, 24)
+    });
+  });
+```
+
 # Contributing
 
 This repo follows the [Fork and Pull Request](https://gist.github.com/Chaser324/ce0505fbed06b947d962) standard. You should follow those guidelines in order to contribute.
