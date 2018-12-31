@@ -7,6 +7,7 @@ using Cake.Jira.Dtos;
 namespace Cake.Jira
 {
     [CakeAliasCategory("Jira")]
+    [CakeNamespaceImport("Cake.Jira.Dtos")]
     public static class MethodAliases
     {
         [CakeMethodAlias]
