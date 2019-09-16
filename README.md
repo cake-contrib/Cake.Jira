@@ -1,6 +1,6 @@
 # Cake.Jira
 
-[![NuGet](https://img.shields.io/nuget/v/Cake.Jira.svg?style=flat-square)](https://www.nuget.org/packages/Cake.Jira/) [![Build status](https://ci.appveyor.com/api/projects/status/od5piwwvn2nyfoet?svg=true)](https://ci.appveyor.com/project/Ninglin/cake-jira)
+[![NuGet](https://img.shields.io/nuget/v/Cake.Jira.svg?style=flat-square)](https://www.nuget.org/packages/Cake.Jira/) [![Build status](https://ci.appveyor.com/api/projects/status/8jdqcnyh9xuapwgc?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-jira)
 
 Cake addin for integration with Jira Issue Tracker
 
