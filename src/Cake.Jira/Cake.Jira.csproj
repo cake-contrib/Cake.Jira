@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <AssemblyTitle>Cake.Jira</AssemblyTitle>
     <Company>Hugo Tavares</Company>
     <Product>Cake.Jira</Product>
     <Description>Cake build addin for integration with Jira.</Description>
-    <Copyright>Copyright © Hugo Tavares 2018</Copyright>
+    <Copyright>Copyright © Hugo Tavares 2021</Copyright>
     <Version>0.6.0</Version>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
     <FileVersion>0.6.0.0</FileVersion>
@@ -13,8 +13,8 @@
     <Authors>Hugo Tavares</Authors>
     <PackageIconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</PackageIconUrl>
     <PackageId>Cake.Jira</PackageId>
-    <PackageLicenseUrl>https://github.com/Ninglin/Cake.Jira/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/Ninglin/Cake.Jira/</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/cake-contrib/Cake.Jira/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/cake-contrib/Cake.Jira/</PackageProjectUrl>
     <PackageTags>Cake Script Build Jira </PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -24,13 +24,10 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Atlassian.SDK" Version="10.4.0" />
-    <PackageReference Include="Cake.Core" Version="0.33.0" PrivateAssets="All" />
+    <PackageReference Include="Atlassian.SDK" Version="12.4.0" />
+    <PackageReference Include="Cake.Core" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.Web" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
   </ItemGroup>
 </Project>
