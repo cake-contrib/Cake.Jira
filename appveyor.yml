@@ -1,4 +1,5 @@
 version: '{build}'
+image: Visual Studio 2019
 environment:
   Verbosity: Normal
   WYAM_DEPLOY_REMOTE: https://github.com/cake-contrib/Cake.Jira
