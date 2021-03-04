@@ -1,5 +1,6 @@
 version: '{build}'
 environment:
+  Verbosity: Normal
   WYAM_DEPLOY_REMOTE: https://github.com/cake-contrib/Cake.Jira
   COVERALLS_REPO_TOKEN:
     secure: xhrS9mmF1f0HYHkNm7N9mMR0nNx8tYl+qo8PxQrl7vzIvxgX6nw4XyP6mzar4X6+
