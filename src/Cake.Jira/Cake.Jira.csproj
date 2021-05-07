@@ -11,11 +11,11 @@
     <FileVersion>0.6.0.0</FileVersion>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <Authors>Hugo Tavares</Authors>
-    <PackageIconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</PackageIconUrl>
+    <PackageIconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/addin/cake-contrib-addin-medium.png</PackageIconUrl>
     <PackageId>Cake.Jira</PackageId>
     <PackageLicenseUrl>https://github.com/cake-contrib/Cake.Jira/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/cake-contrib/Cake.Jira/</PackageProjectUrl>
-    <PackageTags>Cake Script Build Jira </PackageTags>
+    <PackageTags>Cake Script Build Jira cake-addin</PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
