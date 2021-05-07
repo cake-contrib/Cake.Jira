@@ -15,7 +15,7 @@
     <PackageId>Cake.Jira</PackageId>
     <PackageLicenseUrl>https://github.com/cake-contrib/Cake.Jira/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/cake-contrib/Cake.Jira/</PackageProjectUrl>
-    <PackageTags>Cake Script Build Jira </PackageTags>
+    <PackageTags>Cake Script Build Jira cake-addin</PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
