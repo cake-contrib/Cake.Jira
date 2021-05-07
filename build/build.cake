@@ -165,7 +165,7 @@ Task("Get-GitVersion")
 
 			if(runningOnBuildServer)
 			{
-				AppVeyor.UpdateBuildVersion(runningPullRequestBuild ? $"{nugetVersion}-pr" : nugetVersion);
+				AppVeyor.UpdateBuildVersion(nugetVersion);
 			}
 		});
 
