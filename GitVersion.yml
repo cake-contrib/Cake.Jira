@@ -7,6 +7,6 @@ branches:
         regex: releases?[/-]
         mode: ContinuousDelivery
         increment: None
-        tag: ''
+        tag: '' 
 ignore:
   sha: []

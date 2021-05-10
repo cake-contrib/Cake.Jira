@@ -1,14 +1,10 @@
-#---------------------------------#
-#  Build Image                    #
-#---------------------------------#
-image: Visual Studio 2017
-
 version: '{build}'
-pull_requests:
-  do_not_increment_build_number: true
-skip_tags: true
+image: Visual Studio 2019
 environment:
   Verbosity: Normal
+  WYAM_DEPLOY_REMOTE: https://github.com/cake-contrib/Cake.Jira
+  COVERALLS_REPO_TOKEN:
+    secure: xhrS9mmF1f0HYHkNm7N9mMR0nNx8tYl+qo8PxQrl7vzIvxgX6nw4XyP6mzar4X6+
 build_script:
 - ps: >-
     cd .\build
@@ -19,9 +15,29 @@ build_script:
     if($env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH -ne "")
 
     {
-        $branch = "$($branch)/$($env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH)"
+        $branch = "$($branch)/$($env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH)/merge"
     }
 
 
-    .\build.ps1 -Verbosity $env:Verbosity -branch="$($branch)"
+    .\build.ps1 --Verbosity=$env:Verbosity --branch="$($branch)"
 test: off
+deploy:
+- provider: NuGet
+  api_key:
+    secure: d8tUqkqD0ACjKb/XUpcdlyQjIV0/Eeh94FBPiZXKJGvR2ddz/B870Goue4Yc5awK
+  skip_symbols: true
+  on:
+    branch: /Release-[0-9, .]+/
+notifications:
+- provider: Slack
+  incoming_webhook: https://hooks.slack.com/services/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
+  channel: '#appveyor'
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: true
+- provider: Webhook
+  url: https://webhooks.gitter.im/e/e20243cca2b4d87c692f
+  method: POST
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: true

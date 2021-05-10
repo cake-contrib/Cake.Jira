@@ -1,11 +1,12 @@
-#tool "nuget:?package=GitVersion.CommandLine";
-#tool "nuget:?package=NUnit.ConsoleRunner";
-#addin "nuget:?package=Cake.XdtTransform";
-#addin "nuget:?package=Cake.FileHelpers";
-#addin "nuget:?package=Cake.Topshelf"
-#addin nuget:?package=Cake.AppVeyor
+#tool "dotnet:?package=GitVersion.Tool&version=5.6.6&global";
+#tool "nuget:?package=NUnit.ConsoleRunner&version=3.12.0";
+#addin "nuget:?package=Cake.XdtTransform&version=1.0.0";
+#addin "nuget:?package=DotNet.Xdt&version=2.2.1";
+#addin "nuget:?package=Cake.FileHelpers&version=4.0.0";
+#addin "nuget:?package=Cake.Topshelf&version=0.2.5"
+#addin nuget:?package=Cake.AppVeyor&version=5.0.0
 #addin nuget:?package=Refit&version=3.0.0
-#addin nuget:?package=Newtonsoft.Json&version=9.0.1
+#addin nuget:?package=Newtonsoft.Json&version=12.0.3
 
 public void PrintUsage()
 {
